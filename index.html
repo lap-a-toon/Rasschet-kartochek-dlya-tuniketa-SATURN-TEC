@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Расчет карточек для турникета</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+        <style>
+            form#main_form{
+                text-align: center;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+            div#result{
+                border:1px solid;
+                margin-top:1em;
+                margin-bottom:1em;
+                padding: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <form id="main_form">
+            <h3>Преобразование номеров карточек для турникета</h3>
+            <input type="text" name="card_id" id="card_id">
+            <input type="submit">
+            <h4>Результат:</h4>
+            <div id="result"></div>
+        </form>
+        <script>
+            $(document).ready(function(){
+                $('#main_form').on('submit',function(){
+                    event.preventDefault();
+                    num=parseInt($('input#card_id').val());
+                    num16=num.toString(16)
+                    n1=num16.substring(0, 2)
+                    n2=num16.substring(2,6)
+                    n1dec=parseInt(n1,16)
+                    n1dec=n1dec.toString(10)
+                    while(n1dec.length<3){
+                        n1dec='0'+n1dec
+                    }
+                    n2dec=parseInt(n2,16).toString(10)
+                    while(n2dec.length<5){
+                        n2dec='0'+n2dec
+                    }
+                    $('div#result').html(`${n1dec},${n2dec}`)
+                })
+            })
+        </script>
+    </body>
+</html>
