@@ -73,10 +73,12 @@
 
                 function copyToClipboard(element) {
                     var $temp = $("<input>");
+                    $(element).css("background-color", "rgba(0,0,0,.4)");
                     $("body").append($temp);
                     $temp.val($(element).text()).select();
                     document.execCommand("copy");
                     $temp.remove();
+                    setTimeout(function() { $(element).css("background-color", "transparent") },500);
                 }
             })
         </script>
